@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>炭火焼き鳥 予約LP</title>
+  <meta name="description" content="炭火で焼き上げる本格焼き鳥。テント販売・イベント出店・出張焼き鳥に対応。スマホから簡単予約。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="hero__overlay"></div>
+    <div class="container hero__content">
+      <p class="hero__eyebrow">炭火焼き鳥 / ご予約受付中</p>
+      <h1>炭火で焼き上げる、<br>本格焼き鳥を<br>もっと身近に</h1>
+      <p class="hero__lead">
+        テント販売・イベント出店・出張焼き鳥対応。<br>
+        ご予約に合わせて丁寧にご用意します。
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#reservation">今すぐ予約する</a>
+        <a class="btn btn--ghost btn--cta-secondary" href="#trip">出張・イベントのご相談はこちら</a>
+      </div>
+    </div>
+    <!-- TODO: ヒーロー背景画像URLを本番の焼き鳥写真に差し替える（style.css の .hero 背景） -->
+  </header>
+
+  <main>
+    <section class="section section--service" id="service">
+      <div class="container">
+        <h2 class="section__title">サービス紹介</h2>
+        <p class="section__subtitle">固定場所での販売を中心に、イベント・出張にも対応しています。</p>
+        <div class="service-grid">
+          <article class="card">
+            <h3>テント販売</h3>
+            <p>基本は同じ場所で、焼きたての香ばしさをその場でお届け。夕方の一品や晩酌にもぴったりです。</p>
+          </article>
+          <article class="card">
+            <h3>イベント出店</h3>
+            <p>地域イベントやお祭りへの出店も対応。現場の空気に合う、ライブ感ある焼き鳥提供を行います。</p>
+          </article>
+          <article class="card">
+            <h3>出張焼き鳥</h3>
+            <p>企業懇親会やホームパーティー向けに出張対応。人数・時間に合わせて柔軟にご提案します。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--trip" id="trip">
+      <div class="container trip">
+        <div class="trip__text">
+          <h2 class="section__title">出張焼き鳥のご案内</h2>
+          <p class="trip__lead">出張焼き鳥は <strong>10人以上</strong> から承ります。</p>
+          <ul class="trip__list">
+            <li>対応人数: 10名以上</li>
+            <li>対応内容: 焼き場設営・現地調理・ご提供</li>
+            <li>配達のみは非対応（現地提供のみ）</li>
+          </ul>
+          <p class="trip__line-intro">人数・場所・時間などご相談ください。</p>
+          <!-- TODO: 下の LINE 公式アカウント追加URLまたは友だち追加URLに差し替え -->
+          <a
+            class="btn btn--line"
+            href="https://line.me/R/ti/p/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >LINEで相談する</a>
+        </div>
+        <div class="trip__image">
+          <!-- TODO: 出張焼き鳥画像を差し替える場合は style.css の .trip-photo 背景URLを更新 -->
+          <div class="trip-photo" role="img" aria-label="出張焼き鳥イメージ"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--menu" id="menu">
+      <div class="container">
+        <h2 class="section__title">メニュー一覧</h2>
+        <p class="section__subtitle">ご予約時は本数入力で合計金額を自動計算します。</p>
+        <div class="menu-grid">
+          <article class="menu-card menu-card--featured menu-photo--assort">
+            <span class="menu-badge">人気No.1</span>
+            <!-- TODO: 盛り合わせ画像は style.css の .menu-photo--assort 背景URLを差し替え -->
+            <div class="menu-card__body">
+              <h3>盛り合わせ</h3>
+              <p>炭火の香りをしっかり楽しめる定番セット</p>
+              <strong>1200円</strong>
+            </div>
+          </article>
+
+          <article class="menu-card menu-card--featured menu-photo--set">
+            <span class="menu-badge menu-badge--recommend">おすすめ</span>
+            <!-- TODO: 5本組画像は style.css の .menu-photo--set 背景URLを差し替え -->
+            <div class="menu-card__body">
+              <h3>5本組</h3>
+              <p>まずはここから。人気串をバランスよく</p>
+              <strong>700円</strong>
+            </div>
+          </article>
+
+          <article class="menu-card menu-photo--negima">
+            <!-- TODO: ねぎま画像は style.css の .menu-photo--negima 背景URLを差し替え -->
+            <div class="menu-card__body">
+              <h3>ねぎま</h3>
+              <strong>150円</strong>
+            </div>
+          </article>
+
+          <article class="menu-card menu-photo--tsukune">
+            <!-- TODO: つくね画像は style.css の .menu-photo--tsukune 背景URLを差し替え -->
+            <div class="menu-card__body">
+              <h3>つくね</h3>
+              <strong>180円</strong>
+            </div>
+          </article>
+
+          <article class="menu-card menu-photo--kawa">
+            <!-- TODO: かわ画像は style.css の .menu-photo--kawa 背景URLを差し替え -->
+            <div class="menu-card__body">
+              <h3>かわ</h3>
+              <strong>130円</strong>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--trust" id="trust">
+      <div class="container">
+        <h2 class="section__title">安心してご予約いただけます</h2>
+        <p class="section__subtitle section__subtitle--tight">焼きたてのおいしさを、丁寧に。</p>
+        <ul class="trust-list">
+          <li>現地で焼きたて提供</li>
+          <li>予約時間に合わせて準備</li>
+          <li>安心・丁寧な提供</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--scenes" id="scenes">
+      <div class="container">
+        <h2 class="section__title">こんな場面で</h2>
+        <p class="section__subtitle section__subtitle--tight">シーンに合わせてご利用いただけます。</p>
+        <div class="scene-grid">
+          <div class="scene-item">飲み会</div>
+          <div class="scene-item">家族の集まり</div>
+          <div class="scene-item">イベント・お祭り</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--reservation" id="reservation">
+      <div class="container">
+        <h2 class="section__title" id="reservationSectionTitle">予約フォーム</h2>
+        <p class="section__subtitle" id="reservationSectionLead">
+          <strong class="subtitle-em">テント販売・当日受け取り</strong>のご予約はこちら。出張・イベントは<strong><a href="#trip" class="inline-link">出張のご案内</a></strong>からLINEでご相談ください。
+        </p>
+        <!-- 支払いを追加する際: この res-pay-policy と、確認画面ブロック内の「お支払い」一覧を編集 -->
+        <p class="res-pay-policy">
+          オンラインでの<strong>事前決済はありません</strong>。内容を確認のうえ<strong>「予約を確定する」</strong>でご予約が確定します。<strong>お支払いは受け取り時・現地のみ</strong>（現金）となります。
+        </p>
+        <div class="reservation-panel" id="reservationFormPanel">
+        <form class="reservation-form" id="reservationForm">
+          <div class="form-row">
+            <label for="name">お名前</label>
+            <input id="name" name="name" type="text" placeholder="例: 山田 太郎" required>
+          </div>
+
+          <div class="form-row">
+            <label for="phone">電話番号</label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="例: 09012345678" required>
+          </div>
+
+          <fieldset class="form-row">
+            <legend>数量入力</legend>
+            <div class="qty-grid">
+              <div class="qty-field">
+                <label class="qty-field__text" for="qty-negima">ねぎま (150円)</label>
+                <div class="qty-stepper">
+                  <button type="button" class="qty-stepper__btn qty-stepper__btn--minus" aria-label="ねぎまを1つ減らす">−</button>
+                  <input id="qty-negima" type="number" min="0" value="0" inputmode="numeric" autocomplete="off" data-price="150" data-name="ねぎま" class="qty-input" />
+                  <button type="button" class="qty-stepper__btn qty-stepper__btn--plus" aria-label="ねぎまを1つ増やす">+</button>
+                </div>
+              </div>
+              <div class="qty-field">
+                <label class="qty-field__text" for="qty-tsukune">つくね (180円)</label>
+                <div class="qty-stepper">
+                  <button type="button" class="qty-stepper__btn qty-stepper__btn--minus" aria-label="つくねを1つ減らす">−</button>
+                  <input id="qty-tsukune" type="number" min="0" value="0" inputmode="numeric" autocomplete="off" data-price="180" data-name="つくね" class="qty-input" />
+                  <button type="button" class="qty-stepper__btn qty-stepper__btn--plus" aria-label="つくねを1つ増やす">+</button>
+                </div>
+              </div>
+              <div class="qty-field">
+                <label class="qty-field__text" for="qty-kawa">かわ (130円)</label>
+                <div class="qty-stepper">
+                  <button type="button" class="qty-stepper__btn qty-stepper__btn--minus" aria-label="かわを1つ減らす">−</button>
+                  <input id="qty-kawa" type="number" min="0" value="0" inputmode="numeric" autocomplete="off" data-price="130" data-name="かわ" class="qty-input" />
+                  <button type="button" class="qty-stepper__btn qty-stepper__btn--plus" aria-label="かわを1つ増やす">+</button>
+                </div>
+              </div>
+              <div class="qty-field">
+                <label class="qty-field__text" for="qty-set5">5本組 (700円)</label>
+                <div class="qty-stepper">
+                  <button type="button" class="qty-stepper__btn qty-stepper__btn--minus" aria-label="5本組を1つ減らす">−</button>
+                  <input id="qty-set5" type="number" min="0" value="0" inputmode="numeric" autocomplete="off" data-price="700" data-name="5本組" class="qty-input" />
+                  <button type="button" class="qty-stepper__btn qty-stepper__btn--plus" aria-label="5本組を1つ増やす">+</button>
+                </div>
+              </div>
+              <div class="qty-field">
+                <label class="qty-field__text" for="qty-moriawase">盛り合わせ (1200円)</label>
+                <div class="qty-stepper">
+                  <button type="button" class="qty-stepper__btn qty-stepper__btn--minus" aria-label="盛り合わせを1つ減らす">−</button>
+                  <input id="qty-moriawase" type="number" min="0" value="0" inputmode="numeric" autocomplete="off" data-price="1200" data-name="盛り合わせ" class="qty-input" />
+                  <button type="button" class="qty-stepper__btn qty-stepper__btn--plus" aria-label="盛り合わせを1つ増やす">+</button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-row">
+            <legend>受け取り時間</legend>
+            <div class="time-selects">
+              <label for="hourSelect">時</label>
+              <select id="hourSelect" aria-label="受け取り時">
+                <option value="">--</option>
+              </select>
+              <label for="minuteSelect">分</label>
+              <select id="minuteSelect" aria-label="受け取り分">
+                <option value="">--</option>
+                <option value="00">00</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+              </select>
+            </div>
+            <p class="time-preview" id="timePreview">受け取り時間: 未選択</p>
+            <p class="slot-status" id="slotStatus">時間枠の予約状況を表示します</p>
+          </fieldset>
+
+          <div class="total-box">
+            <span>合計金額</span>
+            <strong id="totalAmount">0円</strong>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--full">この内容で予約する</button>
+          <p class="form-confirm-note">予約内容は確認後ご連絡します。</p>
+          <p class="form-note">※ 現在はデモ用フォームです。送信処理は実装していません。</p>
+          <p class="form-show-confirm-note">
+            <button type="button" class="preview-confirm-btn" id="previewConfirmBtn" aria-label="確認画面を入力例で開く">確認画面を表示（入力例・レイアウト確認）</button>
+          </p>
+        </form>
+        </div>
+
+        <div class="reservation-panel" id="reservationConfirmPanel" hidden>
+          <div class="confirm-intro">
+            <h2 class="confirm-title">ご予約内容の確認</h2>
+            <p class="confirm-lead">内容をご確認のうえ、問題なければ「予約を確定する」へお進みください。</p>
+          </div>
+
+          <article class="confirm-card">
+            <h3 class="confirm-card__head">ご注文内容</h3>
+            <div class="confirm-table-wrap">
+              <table class="confirm-table" aria-describedby="confirm-order-caption">
+                <caption id="confirm-order-caption" class="sr-only">注文一覧</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">商品</th>
+                    <th scope="col">数量</th>
+                    <th scope="col">小計</th>
+                  </tr>
+                </thead>
+                <tbody id="confirmOrderBody"></tbody>
+              </table>
+            </div>
+            <div class="confirm-total-wrap">
+              <span>合計金額（税込想定）</span>
+              <p class="confirm-total" id="confirmGrandTotal">0円</p>
+            </div>
+          </article>
+
+          <article class="confirm-card">
+            <h3 class="confirm-card__head">お客様情報</h3>
+            <dl class="confirm-dl">
+              <div><dt>お名前</dt><dd id="confirmName">—</dd></div>
+              <div><dt>電話番号</dt><dd id="confirmPhone">—</dd></div>
+            </dl>
+          </article>
+
+          <article class="confirm-card">
+            <h3 class="confirm-card__head">受け取り情報</h3>
+            <!-- 受け取り場所は script.js の pickupLocation から出力（後でカレンダー連動時もここを更新） -->
+            <dl class="confirm-dl">
+              <div><dt>受け取り時間</dt><dd id="confirmTime">—</dd></div>
+              <div><dt>本日の受け取り場所</dt><dd id="confirmPickupName">—</dd></div>
+              <div><dt>住所</dt><dd id="confirmPickupAddress">—</dd></div>
+            </dl>
+            <p class="confirm-note" id="confirmPickupNote"></p>
+          </article>
+
+          <article class="confirm-card confirm-card--contact">
+            <h3 class="confirm-card__head">店舗連絡先</h3>
+            <dl class="confirm-dl confirm-dl--inline">
+              <div><dt>電話番号</dt><dd><a href="tel:09000000000" class="confirm-tel-link" id="confirmStoreTelLink">090-0000-0000</a></dd></div>
+            </dl>
+            <!-- TODO: LINEのURLを本番の友だち追加URLに差し替え（confirmLineBtn の href も script で同期可） -->
+            <a class="btn btn--line btn--line--block" id="confirmLineBtn" href="https://line.me/R/ti/p/" target="_blank" rel="noopener noreferrer">LINEで問い合わせる</a>
+          </article>
+
+          <article class="confirm-card">
+            <h3 class="confirm-card__head">お支払い</h3>
+            <!-- TODO: PayPay・カードなど追加するときは、下のリストに項目を増やしてください -->
+            <ul class="confirm-pay-list confirm-pay-list--onsite-only">
+              <li><strong>受け取り時・現地にてお支払い</strong></li>
+              <li>現在は<strong>現金</strong>のみとさせていただきます</li>
+            </ul>
+            <p class="confirm-pay-followup">オンライン決済・事前決済は行っておりません。</p>
+          </article>
+
+          <article class="confirm-card confirm-card--muted">
+            <h3 class="confirm-card__head">ご注意</h3>
+            <ul class="confirm-caution-list">
+              <li>配達は行っておりません</li>
+              <li>ご予約時間に合わせてお越しください</li>
+              <li>混雑状況により多少お待ちいただく場合があります</li>
+              <li>出張・イベント予約はLINEでご相談ください</li>
+            </ul>
+          </article>
+
+          <div class="confirm-actions">
+            <button type="button" class="btn btn--ghost btn--full" id="confirmBackBtn">戻って修正する</button>
+            <button type="button" class="btn btn--primary btn--full" id="confirmSubmitBtn">予約を確定する</button>
+          </div>
+        </div>
+
+        <div class="reservation-panel" id="reservationDonePanel" hidden>
+          <div class="confirm-done">
+            <p class="confirm-done__name" id="doneCustomerName">—</p>
+            <h2 class="confirm-done__title">ご予約ありがとうございます！😊</h2>
+            <div class="confirm-done__message">
+              <p class="confirm-done__lead" id="doneReservationLine"></p>
+              <p>当日はご予約のお時間に合わせて、焼きたてを一番美味しい状態でご用意いたします🔥</p>
+              <p>スムーズにお渡しできるよう準備しておりますので、お時間に合わせてご来店いただけますと幸いです。</p>
+              <p>もし遅れる場合やご都合が変わる場合は、事前にご連絡いただけますと助かります🙇‍♂️</p>
+              <p>当日お会いできるのを楽しみにしております！</p>
+            </div>
+            <div class="confirm-done-line">
+              <p class="confirm-done-line__lead">当日の販売場所・焼き上がり時間・変更連絡はLINEでご案内します。</p>
+              <p class="confirm-done-line__note">よろしければ、<strong>お名前と予約時間</strong>をLINEで送ってください。</p>
+              <!-- TODO: 本番運用時はLINE URLを実アカウントのURLへ差し替え -->
+              <a
+                class="btn btn--line btn--line--block confirm-done-line__btn"
+                href="https://lin.ee/xxxxx"
+                target="_blank"
+                rel="noopener noreferrer"
+              >LINEで予約内容を確認する</a>
+            </div>
+            <p class="form-note confirm-done__demo">※ デモ環境の場合があります。自動送信などは別途セットアップしてください。決済は現地扱いのみのためオンライン決済連携はしません。</p>
+            <button type="button" class="btn btn--primary btn--full" id="doneNewOrderBtn">トップに戻る</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--calendar-map" id="calendar">
+      <div class="container calendar-map-stack">
+        <div class="calendar-map-stack__block">
+          <h2 class="section__title">営業日カレンダー</h2>
+          <p class="section__subtitle">固定販売日・イベント出店日はこちらからご確認いただけます。</p>
+          <div class="embed-frame">
+            <!-- TODO: 埋め込みURLは google-settings.js の calendarEmbedUrl（google-embeds.js が反映） -->
+            <iframe
+              id="calendarEmbedFrame"
+              src="about:blank"
+              title="営業日カレンダー（設定待ち）"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+
+        <div class="calendar-map-stack__block calendar-map-stack__block--map" id="access">
+          <h2 class="section__title">本日の販売場所</h2>
+          <p class="section__subtitle section__subtitle--map">
+            基本は同じ場所でテント販売しています。イベント日はカレンダーとあわせて場所が変わる場合があります。
+          </p>
+          <div class="embed-frame embed-frame--map">
+            <!-- TODO: Googleマップの埋め込みURLは google-settings.js の mapEmbedUrl を編集（google-embeds.js が反映）。本日専用URLに分けたい場合は google-settings.js にキーを追加し google-embeds.js を拡張 -->
+            <iframe
+              id="mapEmbedFrame"
+              src="about:blank"
+              title="本日の販売場所マップ（設定待ち）"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--notes" id="notes">
+      <div class="container">
+        <h2 class="section__title">ご利用の前に</h2>
+        <ul class="notes-list">
+          <li>出張焼き鳥は <strong>10人以上</strong> から対応</li>
+          <li>配達は承っておりません（現地でのご提供）</li>
+          <li>受け取りは <strong>時間厳守</strong> でお願いいたします</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--cta">
+      <div class="container cta-box">
+        <h2 class="cta-box__title">焼きたてを、<br />ベストなタイミングで。</h2>
+        <p class="cta-box__lead">通常のご予約はフォームへ。ご宴会・イベントのご希望はLINEでご相談ください。</p>
+        <div class="cta-actions">
+          <a class="btn btn--primary" href="#reservation">今すぐ予約する</a>
+          <a class="btn btn--ghost btn--cta-secondary" href="#trip">出張・イベントのご相談はこちら</a>
+          <a class="btn btn--ghost" href="#top">トップに戻る</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <!-- TODO: 店名を本番名に差し替え -->
+      <p class="site-footer__brand">炭火焼き鳥（店名）</p>
+      <a
+        class="site-footer__ig"
+        href="https://www.instagram.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Instagram</a>
+      <!-- TODO: InstagramのプロフィールURLに差し替え（上の href） -->
+      <p class="site-footer__copy">© 炭火焼き鳥（店名）</p>
+    </div>
+  </footer>
+
+  <!-- 読み込み順: 設定 → 埋め込み反映 → 予約フォーム用ロジック -->
+  <script src="google-settings.js"></script>
+  <script src="google-embeds.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

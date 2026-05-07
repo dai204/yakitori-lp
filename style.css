@@ -220,7 +220,7 @@ img {
   position: absolute;
   inset: -4%;
   z-index: 0;
-  background: url("/yakitori-lp/images/hero-yakitori.png") center / cover no-repeat;
+  background: url("hero-yakitori.png") center / cover no-repeat;
   transform: scale(1);
   animation: heroPhotoDrift 10s ease-in-out infinite alternate;
   will-change: transform;
@@ -479,7 +479,7 @@ img {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.1)),
     radial-gradient(circle at 80% 20%, rgba(255, 122, 24, 0.08), transparent 48%),
-    url("/yakitori-lp/images/trip-yakitori.png") center / cover no-repeat;
+    url("trip-yakitori.png") center / cover no-repeat;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.38);
   position: relative;
   overflow: hidden;
@@ -573,7 +573,7 @@ img {
   align-items: flex-end;
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.1)),
-    url("/yakitori-lp/images/hero-yakitori.png") center / cover no-repeat;
+    url("hero-yakitori.png") center / cover no-repeat;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
 }
 
@@ -649,31 +649,31 @@ img {
 .menu-photo--assort {
   background-image:
     linear-gradient(180deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.1)),
-    url("/yakitori-lp/images/hero-yakitori.png");
+    url("hero-yakitori.png");
 }
 
 .menu-photo--set {
   background-image:
     linear-gradient(180deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.1)),
-    url("/yakitori-lp/images/trip-yakitori.png");
+    url("trip-yakitori.png");
 }
 
 .menu-photo--negima {
   background-image:
     linear-gradient(180deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.1)),
-    url("/yakitori-lp/images/trip-yakitori.png");
+    url("trip-yakitori.png");
 }
 
 .menu-photo--tsukune {
   background-image:
     linear-gradient(180deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.1)),
-    url("/yakitori-lp/images/hero-yakitori.png");
+    url("hero-yakitori.png");
 }
 
 .menu-photo--kawa {
   background-image:
     linear-gradient(180deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.1)),
-    url("/yakitori-lp/images/trip-yakitori.png");
+    url("trip-yakitori.png");
 }
 
 .reservation-form {

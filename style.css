@@ -698,7 +698,8 @@ img {
 }
 
 input,
-select {
+select,
+textarea {
   width: 100%;
   border: 1px solid var(--line);
   background: var(--surface-input);
@@ -709,6 +710,15 @@ select {
 }
 
 input::placeholder {
+  color: #bcbcbc;
+}
+
+textarea {
+  min-height: 7.5rem;
+  resize: vertical;
+}
+
+textarea::placeholder {
   color: #bcbcbc;
 }
 
@@ -1062,6 +1072,20 @@ input::placeholder {
   flex-direction: column;
   gap: 10px;
   margin-top: 20px;
+}
+
+.confirm-actions .btn:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.reservation-submit-message {
+  flex: 1 0 100%;
+  margin: 2px 0 0;
+  color: #ffb0a8;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  text-align: center;
 }
 
 .btn--line--block {

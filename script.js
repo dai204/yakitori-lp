@@ -22,6 +22,8 @@ const confirmOrderBody = document.getElementById("confirmOrderBody");
 const confirmGrandTotal = document.getElementById("confirmGrandTotal");
 const confirmName = document.getElementById("confirmName");
 const confirmPhone = document.getElementById("confirmPhone");
+const confirmEmail = document.getElementById("confirmEmail");
+const confirmNote = document.getElementById("confirmNote");
 const confirmTime = document.getElementById("confirmTime");
 const confirmPickupName = document.getElementById("confirmPickupName");
 const confirmPickupAddress = document.getElementById("confirmPickupAddress");
@@ -31,12 +33,15 @@ const confirmLineBtn = document.getElementById("confirmLineBtn");
 
 const confirmBackBtn = document.getElementById("confirmBackBtn");
 const confirmSubmitBtn = document.getElementById("confirmSubmitBtn");
+const reservationSubmitMessage = document.getElementById("reservationSubmitMessage");
 const doneNewOrderBtn = document.getElementById("doneNewOrderBtn");
 const doneCustomerName = document.getElementById("doneCustomerName");
 const doneReservationLine = document.getElementById("doneReservationLine");
 
 const nameInput = document.getElementById("name");
 const phoneInput = document.getElementById("phone");
+const emailInput = document.getElementById("email");
+const noteInput = document.getElementById("note");
 
 /** 後で Google カレンダー・イベント出店と連動させるときは、このオブジェクトを更新してから applyPickupLocationToConfirm() を呼ぶ */
 const pickupLocation = {
@@ -70,6 +75,13 @@ const bookingSlots = {
 
 function formatYen(value) {
   return `${value.toLocaleString("ja-JP")}円`;
+}
+
+function formatLocalDateForPayload(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
 }
 
 /** 完了画面用：確定時点の「本日」と受け取り時刻（日付入力がないため当日扱い） */
@@ -273,10 +285,13 @@ function openConfirmStep() {
   if (!validateSlotAvailability()) return;
 
   pendingReservationTime = getSelectedTime();
+  setSubmitMessage("");
 
   renderConfirmOrderLines();
   confirmName.textContent = nameInput.value.trim() || "—";
   confirmPhone.textContent = phoneInput.value.trim() || "—";
+  confirmEmail.textContent = emailInput.value.trim() || "—";
+  confirmNote.textContent = noteInput.value.trim() || "—";
   confirmTime.textContent = pendingReservationTime;
   syncStoreContactToConfirm();
   applyPickupLocationToConfirm();
@@ -288,6 +303,8 @@ function openConfirmStep() {
 function fillSampleDataAndOpenConfirm() {
   nameInput.value = "山田 太郎";
   phoneInput.value = "09012345678";
+  emailInput.value = "yakitori@example.com";
+  noteInput.value = "焼き上がり時間に合わせて伺います。";
 
   PRICE_INPUTS.forEach((input) => {
     input.value = "0";
@@ -308,6 +325,7 @@ function fillSampleDataAndOpenConfirm() {
 
 function backToForm() {
   pendingReservationTime = "";
+  setSubmitMessage("");
   setReservationUIMode("form");
 }
 
@@ -315,67 +333,60 @@ function getGoogleLpConfig() {
   return typeof window !== "undefined" && window.GOOGLE_LP_CONFIG ? window.GOOGLE_LP_CONFIG : null;
 }
 
-/** 予約確定時に Apps Script 等へ送る JSON（スプレッドシート側の列と合わせて調整してください） */
+/** 予約確定時に Apps Script へ送る項目（GAS側の列名と合わせる） */
 function buildReservationPayload(reservedTimeKey) {
-  const items = [];
-  let total = 0;
-
-  PRICE_INPUTS.forEach((input) => {
-    const qty = Math.max(0, Number(input.value) || 0);
-    if (qty === 0) return;
-    const price = Number(input.dataset.price) || 0;
-    const line = price * qty;
-    total += line;
-    items.push({
-      name: input.dataset.name || "",
-      quantity: qty,
-      unitPrice: price,
-      lineTotal: line
-    });
-  });
-
-  const cfg = getGoogleLpConfig();
+  const { parts, total } = buildDoneOrderSummary();
 
   return {
-    type: "yakitori_reservation",
-    reservedAt: new Date().toISOString(),
-    customerName: nameInput.value.trim(),
-    customerPhone: phoneInput.value.trim(),
-    pickupTime: reservedTimeKey,
-    pickupLocation: { ...pickupLocation },
-    items,
-    totalAmount: total,
-    /** 現状の支払い方針（スプレッドシート側の列などで参照しやすいよう固定文字列） */
-    paymentPolicy: "onsite_cash_only",
-    /** 運用メモ（Apps Script でログに使う用。空でも可） */
-    spreadsheetIdMemo: cfg && cfg.spreadsheetIdMemo ? cfg.spreadsheetIdMemo : ""
+    receiveDate: formatLocalDateForPayload(),
+    receiveTime: reservedTimeKey,
+    name: nameInput.value.trim(),
+    phone: phoneInput.value.trim(),
+    email: emailInput.value.trim(),
+    order: parts.join("、"),
+    total,
+    note: noteInput.value.trim()
   };
 }
 
 /**
- * google-settings.js の spreadsheetAppsScriptUrl が設定されているときだけ POST。
- * 知人へ引き渡す際は URL 差し替え＋Apps Script 側で doPost を実装してください。
+ * Apps Script はCORS応答を返さない構成も多いため、Form POST相当の no-cors で送る。
+ * GAS側では e.parameter.receiveDate など、buildReservationPayload() のキー名で受け取る。
  */
-async function submitReservationIfConfigured(payload) {
+async function submitReservation(payload) {
   const cfg = getGoogleLpConfig();
   const url = cfg && cfg.spreadsheetAppsScriptUrl ? String(cfg.spreadsheetAppsScriptUrl).trim() : "";
   if (!url) {
-    return;
+    throw new Error("Apps Script URL is not configured.");
   }
 
-  try {
-    await fetch(url, {
-      method: "POST",
-      mode: "cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-  } catch (err) {
-    console.warn("[予約送信] Apps Script への送信に失敗しました。CORS・URL・公開設定を確認してください。", err);
+  const body = new URLSearchParams();
+  Object.entries(payload).forEach(([key, value]) => {
+    body.append(key, value == null ? "" : String(value));
+  });
+
+  await fetch(url, {
+    method: "POST",
+    mode: "no-cors",
+    body
+  });
+}
+
+function setSubmitMessage(message) {
+  if (reservationSubmitMessage) {
+    reservationSubmitMessage.textContent = message;
   }
 }
 
-function finalizeReservation() {
+function setConfirmSubmitLoading(isLoading) {
+  confirmSubmitBtn.disabled = isLoading;
+  confirmBackBtn.disabled = isLoading;
+  confirmSubmitBtn.textContent = isLoading ? "送信中..." : "予約を確定する";
+}
+
+async function finalizeReservation() {
+  if (confirmSubmitBtn.disabled) return;
+
   const t = pendingReservationTime || getSelectedTime();
   if (!t || !validateSlotAvailability()) {
     pendingReservationTime = "";
@@ -385,14 +396,24 @@ function finalizeReservation() {
 
   const payload = buildReservationPayload(t);
 
-  bookingSlots[t] = (bookingSlots[t] || 0) + 1;
-  updateTimePreviewAndSlot();
-  pendingReservationTime = "";
+  setSubmitMessage("");
+  setConfirmSubmitLoading(true);
 
-  populateDonePanel(t);
-  setReservationUIMode("done");
+  try {
+    await submitReservation(payload);
 
-  void submitReservationIfConfigured(payload);
+    bookingSlots[t] = (bookingSlots[t] || 0) + 1;
+    updateTimePreviewAndSlot();
+    pendingReservationTime = "";
+
+    populateDonePanel(t);
+    setReservationUIMode("done");
+  } catch (err) {
+    console.warn("[予約送信] Apps Script への送信に失敗しました。URL・公開設定・doPost を確認してください。", err);
+    setSubmitMessage("送信に失敗しました。時間をおいて再度お試しください。");
+  } finally {
+    setConfirmSubmitLoading(false);
+  }
 }
 
 function scrollToPageTop() {
@@ -407,6 +428,9 @@ function scrollToPageTop() {
 function resetFormForNewOrder() {
   nameInput.value = "";
   phoneInput.value = "";
+  emailInput.value = "";
+  noteInput.value = "";
+  setSubmitMessage("");
 
   PRICE_INPUTS.forEach((input) => {
     input.value = "0";

@@ -174,6 +174,11 @@
             <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="例: 09012345678" required>
           </div>
 
+          <div class="form-row">
+            <label for="email">メールアドレス（任意）</label>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="例: yakitori@example.com">
+          </div>
+
           <fieldset class="form-row">
             <legend>数量入力</legend>
             <div class="qty-grid">
@@ -240,6 +245,11 @@
             <p class="slot-status" id="slotStatus">時間枠の予約状況を表示します</p>
           </fieldset>
 
+          <div class="form-row">
+            <label for="note">備考（任意）</label>
+            <textarea id="note" name="note" rows="4" placeholder="アレルギーやご希望などがあればご記入ください"></textarea>
+          </div>
+
           <div class="total-box">
             <span>合計金額</span>
             <strong id="totalAmount">0円</strong>
@@ -247,7 +257,7 @@
 
           <button type="submit" class="btn btn--primary btn--full">この内容で予約する</button>
           <p class="form-confirm-note">予約内容は確認後ご連絡します。</p>
-          <p class="form-note">※ 現在はデモ用フォームです。送信処理は実装していません。</p>
+          <p class="form-note">※ 内容を確認のうえ「予約を確定する」で送信します。</p>
           <p class="form-show-confirm-note">
             <button type="button" class="preview-confirm-btn" id="previewConfirmBtn" aria-label="確認画面を入力例で開く">確認画面を表示（入力例・レイアウト確認）</button>
           </p>
@@ -286,6 +296,8 @@
             <dl class="confirm-dl">
               <div><dt>お名前</dt><dd id="confirmName">—</dd></div>
               <div><dt>電話番号</dt><dd id="confirmPhone">—</dd></div>
+              <div><dt>メールアドレス</dt><dd id="confirmEmail">—</dd></div>
+              <div><dt>備考</dt><dd id="confirmNote">—</dd></div>
             </dl>
           </article>
 
@@ -332,13 +344,14 @@
           <div class="confirm-actions">
             <button type="button" class="btn btn--ghost btn--full" id="confirmBackBtn">戻って修正する</button>
             <button type="button" class="btn btn--primary btn--full" id="confirmSubmitBtn">予約を確定する</button>
+            <p class="reservation-submit-message" id="reservationSubmitMessage" role="status" aria-live="polite"></p>
           </div>
         </div>
 
         <div class="reservation-panel" id="reservationDonePanel" hidden>
           <div class="confirm-done">
             <p class="confirm-done__name" id="doneCustomerName">—</p>
-            <h2 class="confirm-done__title">ご予約ありがとうございます！😊</h2>
+            <h2 class="confirm-done__title">ご予約を受け付けました。内容を確認のうえ準備いたします。</h2>
             <div class="confirm-done__message">
               <p class="confirm-done__lead" id="doneReservationLine"></p>
               <p>当日はご予約のお時間に合わせて、焼きたてを一番美味しい状態でご用意いたします🔥</p>
@@ -357,7 +370,7 @@
                 rel="noopener noreferrer"
               >LINEで予約内容を確認する</a>
             </div>
-            <p class="form-note confirm-done__demo">※ デモ環境の場合があります。自動送信などは別途セットアップしてください。決済は現地扱いのみのためオンライン決済連携はしません。</p>
+            <p class="form-note confirm-done__demo">※ 決済は現地扱いのみのため、オンライン決済連携はありません。</p>
             <button type="button" class="btn btn--primary btn--full" id="doneNewOrderBtn">トップに戻る</button>
           </div>
         </div>
@@ -373,7 +386,7 @@
             <!-- TODO: 埋め込みURLは google-settings.js の calendarEmbedUrl（google-embeds.js が反映） -->
             <iframe
               id="calendarEmbedFrame"
-              src="about:blank"
+              src="https://calendar.google.com/calendar/embed?src=nao.0504.g707%40gmail.com&ctz=Asia%2FTokyo"
               title="営業日カレンダー（設定待ち）"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
